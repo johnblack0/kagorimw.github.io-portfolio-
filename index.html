@@ -15,7 +15,7 @@
             line-height: 1.7;
         }
 
-        /* ===== COLORS ===== */
+        /* ===== COLORS (kept exactly as original) ===== */
         :root {
             --primary: #0f3460;
             --primary-light: #16213e;
@@ -86,7 +86,7 @@
             justify-content: center;
             margin-left: auto;
             margin-right: auto;
-            overflow: hidden; /* ensures the image stays rounded */
+            overflow: hidden;              /* keeps image rounded */
         }
         .hero-avatar img {
             width: 100%;
@@ -184,6 +184,18 @@
             margin-top: 20px;
         }
         .about-text p { margin-bottom: 14px; font-size: 15px; }
+        /* full photo placed inside the left column */
+        .about-photo {
+            margin-top: 24px;
+            text-align: center;
+        }
+        .about-photo img {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 10px;
+            border: 3px solid var(--bg-light);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
         .about-details h3 {
             color: var(--primary);
             margin-bottom: 10px;
@@ -211,18 +223,6 @@
             font-size: 12px;
             font-weight: 600;
             margin: 2px;
-        }
-        /* about photo container */
-        .about-photo {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .about-photo img {
-            width: 100%;
-            max-width: 280px;
-            border-radius: 12px;
-            border: 3px solid var(--bg-light);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         /* ===== SKILLS ===== */
@@ -322,9 +322,27 @@
         .status-progress { background: #cce5ff; color: #004085; }
         .status-done { background: #d4edda; color: #155724; }
 
-        /* ===== PITCH ===== */
+        /* ===== PITCH (video + transcript) ===== */
         #pitch { background: #fff; max-width: 100%; }
         #pitch .inner { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
         .pitch-box {
             background: var(--bg-light);
             border-left: 4px solid var(--accent);
@@ -333,23 +351,6 @@
             font-style: italic;
             line-height: 1.8;
             color: #333;
-        }
-        .pitch-video-placeholder {
-            background: #1a1a2e;
-            color: #ccc;
-            text-align: center;
-            padding: 40px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .pitch-video-placeholder a {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 24px;
-            background: var(--accent);
-            color: #fff;
-            border-radius: 6px;
-            font-weight: 600;
         }
 
         /* ===== CONTACT ===== */
@@ -425,7 +426,7 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
     <div class="hero-content">
-        <!-- UPDATED: Hero avatar now shows your photo -->
+        <!-- ✅ PHOTO: replaced "JM" with your image -->
         <div class="hero-avatar">
             <img src="DSC08460.jpg" alt="John Kagori Mwangi">
         </div>
@@ -451,6 +452,11 @@
                 <p>Driven by the conviction that Regional Integration requires digital trust, John is studying cybersecurity with a focus on ethical hacking, penetration testing, and AI-powered security solutions. He is a graduate of the <strong>ALX AiCE Professional Foundations</strong> programme, where he led the Border Pass X (eCUSTOMS ONE) team project addressing cross-border trade delays at the Busia border, conducted climate-smart agriculture research for smallholder farmers, and independently built an AI agent — demonstrating a commitment to self-directed learning at the intersection of technology and community impact.</p>
                 <p>What sets John apart is his perspective: he comes from the community side first. He understands how people actually use technology — where they trust it, where they don't, and what makes a system work in real life, not just in theory. He's now building the technical skills (ethical hacking, AI integration, security analysis) to pair with that understanding.</p>
                 <p>John is currently working towards his <strong>CompTIA Security+</strong> certification, practising hands-on through TryHackMe and Hack The Box, and documenting his journey through his blog, <strong>CyberMind Journal</strong>. His long-term goal is to become an ethical hacker and cybersecurity consultant, securing the digital infrastructure that connects African communities.</p>
+
+                <!-- ✅ FULL PHOTO placed naturally in the left column -->
+                <div class="about-photo">
+                    <img src="DSC08460.jpg" alt="John Kagori Mwangi full photo">
+                </div>
             </div>
             <div class="about-details">
                 <h3>Professional Identity</h3>
@@ -471,11 +477,6 @@
                     <li>Currently studying CompTIA Security+</li>
                 </ul>
                 <p style="font-size: 13px; color: var(--text-muted); font-style: italic;">Fun fact: I'm socially awkward, which makes me introverted — but that same thoughtfulness helps me notice details others miss. I also enjoy video games and anime, and storytelling in all its forms inspires how I think about technology and human connection.</p>
-                
-                <!-- UPDATED: Full-size photo added here -->
-                <div class="about-photo">
-                    <img src="DSC08460.jpg" alt="John Kagori Mwangi full photo">
-                </div>
             </div>
         </div>
     </div>
@@ -597,29 +598,65 @@
     </div>
 </section>
 
-<!-- ===== PITCH ===== -->
+<!-- ===== PITCH (video + collapsible transcript) ===== -->
 <section id="pitch">
     <div class="inner">
         <h2 class="section-title">Elevator Pitch</h2>
         <p class="section-sub">50 seconds on who I am and where I'm headed</p>
 
-        <!-- Replace this with your embedded video once recorded -->
-        <div class="pitch-video-placeholder">
-            <p style="font-size: 32px; margin-bottom: 10px;">&#127916;</p>
-            <p>Elevator pitch video coming soon</p>
-            <a href="#" onclick="alert('Video being recorded. Check back soon!'); return false;">Watch on YouTube</a>
+        <!-- Embedded YouTube video -->
+        <div class="video-wrapper">
+            <iframe
+                src="https://www.youtube.com/embed/G2kvA7uGgzA"
+                title="John Kagori Mwangi — Elevator Pitch"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
         </div>
 
-        <div class="pitch-box">
-            <p>"Hi, I'm John Kagori Mwangi — a Regional Programme Coordinator turned aspiring cybersecurity professional, based in Kenya.</p>
-            <p>As a coordinator managing youth programmes across 50+ communities and 7 counties, I've learned that the best systems aren't just efficient — they're trustworthy.</p>
-            <p>Through the ALX AiCE programme, I led the Border Pass X project tackling cross-border trade delays at Busia, built an AI agent from scratch, and researched climate-smart solutions for smallholder farmers. Every project taught me the same lesson: technology only works when the people using it can trust it.</p>
-            <p>Right now I'm building expertise in three areas: ethical hacking fundamentals, AI model integration, and security analysis — combining practical training on penetration testing tools with a deep understanding of how technology lands in real communities.</p>
-            <p>What makes my perspective different is that I come from the community side first. I'm learning the technical side now, but I'm bringing a problem-solving lens that starts with people, not code.</p>
-            <p>I'm on a journey from coordinator to cybersecurity professional. Let's build systems that aren't just connected — but trusted."</p>
+        <!-- Toggle button -->
+        <div style="text-align: center; margin: 16px 0;">
+            <button id="toggleTranscriptBtn" onclick="toggleTranscript()" style="
+                background: var(--primary);
+                color: #fff;
+                border: none;
+                padding: 8px 24px;
+                border-radius: 6px;
+                font-size: 14px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.2s;
+            " onmouseover="this.style.background='#16213e'" onmouseout="this.style.background='var(--primary)'">
+                Hide Transcript
+            </button>
+        </div>
+
+        <!-- Transcript (collapsible) -->
+        <div id="pitchTranscript" class="pitch-box">
+            <p>Hi, I'm John Kagori Mwangi — currently serving as a Regional Coordinator of the PSA Programme in Kenya while pursuing studies in cybersecurity through the ALX programme.</p>
+            <p>Working with youth programmes across multiple communities and counties has taught me that strong systems are built not only on efficiency, but on trust, collaboration, and real human impact.</p>
+            <p>Through the ALX AiCE programme, I worked on projects such as Border Pass X, a solution focused on reducing cross-border trade delays at Busia, explored AI-driven ideas for climate-smart farming, and gained hands-on experience building AI-powered solutions from the ground up. These experiences strengthened my interest in how technology can solve practical community challenges when designed with people in mind.</p>
+            <p>Today, I am building my skills in cybersecurity, ethical hacking, AI integration, and security analysis — combining technical learning with a community-centered perspective shaped by years of coordination and grassroots engagement.</p>
+            <p>What makes my journey unique is that I come from the people and development side first, and I'm now expanding into the technical world with a mindset focused on problem-solving, trust, and impact.</p>
+            <p>I'm on a journey toward becoming a cybersecurity professional dedicated to building systems that are not only connected and innovative, but also secure and trusted.</p>
         </div>
     </div>
 </section>
+
+<!-- Script for toggle button -->
+<script>
+    function toggleTranscript() {
+        const box = document.getElementById('pitchTranscript');
+        const btn = document.getElementById('toggleTranscriptBtn');
+        if (box.style.display === 'none') {
+            box.style.display = 'block';
+            btn.textContent = 'Hide Transcript';
+        } else {
+            box.style.display = 'none';
+            btn.textContent = 'Show Transcript';
+        }
+    }
+</script>
 
 <!-- ===== CONTACT ===== -->
 <section id="contact">
